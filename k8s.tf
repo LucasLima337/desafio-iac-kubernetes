@@ -9,3 +9,8 @@ resource "digitalocean_kubernetes_cluster" "k8s_iniciativa_devops" {
     node_count = 3
   }
 }
+
+resource "local_file" "kube_config" {
+  content  = digitalocean_kubernetes_cluster.k8s_iniciativa_devops.kube_config.0.raw_config
+  filename = "kube_config.yml"
+}
